@@ -1,8 +1,13 @@
 "use client";
 
+import * as SheetPrimitive from "@radix-ui/react-dialog";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname, useParams } from "next/navigation";
+import { Sheet, SheetClose } from "./ui/sheet";
+import { ROUTES_MANIFEST } from "next/dist/shared/lib/constants";
+import { ROUTES } from "@/app/routes";
 
 export const MainNav = ({
   className,
@@ -11,52 +16,19 @@ export const MainNav = ({
   const pathname = usePathname();
   const params = useParams();
 
-  const routes = [
-    {
-      href: `/${params.storeId}`,
-      label: "Overview",
-      active: pathname === `/${params.storeId}`,
-    },
-    {
-      href: `/${params.storeId}/billboards`,
-      label: "Billboards",
-      active: pathname === `/${params.storeId}/billboards`,
-    },
-    {
-      href: `/${params.storeId}/categories`,
-      label: "Categories",
-      active: pathname === `/${params.storeId}/categories`,
-    },
-    {
-      href: `/${params.storeId}/sizes`,
-      label: "Sizes",
-      active: pathname === `/${params.storeId}/sizes`,
-    },
-    {
-      href: `/${params.storeId}/colors`,
-      label: "Colors",
-      active: pathname === `/${params.storeId}/colors`,
-    },
-    {
-      href: `/${params.storeId}/products`,
-      label: "Products",
-      active: pathname === `/${params.storeId}/products`,
-    },
-    {
-      href: `/${params.storeId}/orders`,
-      label: "Orders",
-      active: pathname === `/${params.storeId}/orders`,
-    },
-    {
-      href: `/${params.storeId}/settings`,
-      label: "Settings",
-      active: pathname === `/${params.storeId}/settings`,
-    },
-  ];
+  const formattedRoutes = ROUTES.map((route) => {
+    return {
+      href: `/${params.storeId}${route.href.length > 1 ? route.href : ""}`,
+      label: route.label,
+      active:
+        pathname ===
+        `/${params.storeId}${route.href.length > 1 ? route.href : ""}`,
+    };
+  });
 
   return (
-    <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
-      {routes.map((route) => (
+    <nav className={cn("items-center lg:space-x-6 ", className)}>
+      {formattedRoutes.map((route) => (
         <Link
           key={route.href}
           href={route.href}

@@ -20,7 +20,7 @@ export const ProductClient: React.FC<ProductClientProps> = ({ data }) => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="md:flex items-center justify-between">
         <Heading
           title={`Products(${data.length})`}
           description="Manage products for your store"

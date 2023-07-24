@@ -20,7 +20,7 @@ export const ColorClient: React.FC<ColorClientProps> = ({ data }) => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="md:flex items-center justify-between">
         <Heading
           title={`Colors(${data.length})`}
           description="Manage color for your store"

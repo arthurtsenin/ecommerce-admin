@@ -24,7 +24,7 @@ const DashboardPage = async ({ params }: DashboardPageProps) => {
       <div className="flex-1 space-y-2 p-8 pt-6">
         <Heading title="Dachboard" description="Overview of your store" />
         <Separator />
-        <div className="grid gap-4 grid-cols-3">
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-3 ">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-2 pb-3">
               <CardTitle className="text-sm font-medium">
